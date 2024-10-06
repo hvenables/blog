@@ -1,6 +1,7 @@
 <div class="articles-container">
   <% @articles.each do |article| %>
     <article class="article">
+      <%= link_to "Read more", article_path(article) %>
     </article>
   <% end %>
 </div>

@@ -94,6 +94,8 @@ GEM
     drb (2.2.1)
     erubi (1.13.0)
     ffi (1.17.0-x86_64-linux-gnu)
+    friendly_id (5.5.1)
+      activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     google-protobuf (4.28.2-x86_64-linux)
@@ -276,6 +278,7 @@ DEPENDENCIES
   brakeman
   dartsass-rails
   debug
+  friendly_id
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
