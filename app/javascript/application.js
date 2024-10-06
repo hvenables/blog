@@ -6,6 +6,13 @@ import "trix"
 import "@rails/actiontext"
 import hljs from "highlight.js"
 
+hljs.configure({
+  languages: ['ruby', 'javascript', 'css'],
+  es: {
+    next: true,
+  },
+});
+
 document.addEventListener('turbo:load', () => {
   document.querySelectorAll('pre code').forEach((block) => {
     hljs.highlightElement(block);
