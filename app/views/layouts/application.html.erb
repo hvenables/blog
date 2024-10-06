@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Blog" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://kit.fontawesome.com/333069cdb7.js" crossorigin="anonymous"></script>
+  </head>
+  <body id="app">
+    <nav>
+      <div class="nav-container">
+        <div class="logo">
+          <%= link_to root_path do %>
+            <h2>Harry Codes</h2>
+          <% end %>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li>
+              <%= link_to "Blog", articles_path %>
+            </li>
+            <li><a href="#">About</a></li>
+            <li>
+              <%= link_to "Contact", contact_path %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <%# Blog %>
+      <%# About %>
+      <%# Contact Me %>
+    </nav>
+    <div class="content">
+      <div class="left-gutter"></div>
+      <div class="main-area">
+        <%= yield %>
+      </div>
+      <div class="right-gutter"></div>
+    </div>
+    <footer>
+      <a href="https://x.com/HarryVenables" target="_blank">
+        <i class="fa-brands fa-2x fa-twitter"></i>
+      </a>
+      <a href="https://github.com/hvenables" target="_blank">
+        <i class="fa-brands fa-2x fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/harry-venables-28109986" target="_blank">
+        <i class="fa-brands fa-2x fa-linkedin"></i>
+      </a>
+    </footer>
+  </body>
+</html>

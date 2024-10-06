@@ -1,0 +1,47 @@
+#app > nav {
+  background: rgba(12, 19, 28, 0.8);
+  display: flex;
+  grid-area: "header";
+}
+
+.nav-container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .logo {
+    min-width: 200px;
+    flex-grow: 1;
+
+    a {
+      text-decoration: none;
+      h2 {
+        color: #809fff;
+      }
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    min-width: 300px;
+    height: 100%;
+    align-items: center;
+
+    ul {
+      display: flex;
+
+      li {
+        list-style-type: none;
+        padding: 10px;
+        margin: 0 10px;
+
+        a {
+          text-decoration: none;
+          color: $text-gray;
+        }
+      }
+    }
+  }
+}
