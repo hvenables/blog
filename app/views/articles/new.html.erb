@@ -1,13 +1,21 @@
-<%= form_with model: @article do |form| %>
+<%= form_with model: @article, id: "article-form" do |form| %>
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
   <div class="field">
+    <%= form.label :sub_title %>
+    <%= form.text_field :sub_title %>
+  </div>
+  <div class="field">
+    <%= form.label :summary %>
+    <%= form.text_area :summary, id: "article-summary", rows: 5 %>
+  </div>
+  <div class="field">
     <%= form.label :content %>
     <%= form.rich_text_area :content %>
   </div>
-  <div class="field">
+  <div class="submit">
     <%= form.submit "Create Article" %>
   </div>
 <% end %>

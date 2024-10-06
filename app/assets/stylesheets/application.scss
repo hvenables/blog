@@ -9,58 +9,10 @@
 }
 
 $text-gray: rgb(191, 196, 201);
+$background-gray: rgb(18, 27, 40);
 
 @import "trix";
 @import "actiontext.scss";
+@import "layout.scss";
 @import "navbar.scss";
-
-
-#app {
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 70px 1fr 100px;
-  grid-template-areas: 
-    'header'
-    'main'
-    'footer';
-  margin: 0;
-  background-color: #121b28;
-  font-family: FiraCode, sans-serif;
-  color: $text-gray;
-}
-
-#app > .content {
-  display: grid;
-  grid-template-columns: 1fr minmax(70vw, 70vw) 1fr;
-}
-
-#app > footer {
-  background-color: #183241;
-}
-
-.field {
-  padding: 10px;
-}
-
-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  a {
-    text-decoration: none;
-    color: $text-gray
-  }
-
-  i {
-    padding-left: 10px;
-    padding-right: 10px;
-    transition: transform .7s ease-in-out;
-  }
-
-  i:hover {
-    transform: rotate(360deg);
-  }
-}
-
+@import "articles.scss";

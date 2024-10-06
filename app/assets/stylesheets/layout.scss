@@ -1,0 +1,49 @@
+#app {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70px 1fr 100px;
+  grid-template-areas: 
+    'header'
+    'main'
+    'footer';
+  margin: 0;
+  background-color: $background-gray;
+  font-family: FiraCode, sans-serif;
+  color: $text-gray;
+}
+
+#app > .content {
+  display: grid;
+  grid-template-columns: 1fr 70vw 1fr;
+}
+
+#app > footer {
+  background-color: #183241;
+}
+
+.field {
+  padding: 10px;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    text-decoration: none;
+    color: $text-gray
+  }
+
+  i {
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: transform .7s ease-in-out;
+  }
+
+  i:hover {
+    transform: rotate(360deg);
+  }
+}
+

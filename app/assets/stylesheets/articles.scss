@@ -1,0 +1,47 @@
+.articles-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 300px;
+  grid-gap: 20px;
+}
+
+@media (max-width:480px)  {
+  .articles-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.article {
+  background-color: red
+}
+
+#article-form {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+#article-form > .field > label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#article-form > .field > input, textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: $background-gray;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  border: 1px solid $text-gray;
+  box-sizing: border-box;
+}
+
+
+#article-form > .field > textarea {
+  resize: none;
+}
