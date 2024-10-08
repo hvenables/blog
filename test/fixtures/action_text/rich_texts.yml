@@ -1,0 +1,5 @@
+first_content:
+  record: first (Article)
+  name: content
+  body: <div>Hello, world.</div>
+

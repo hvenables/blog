@@ -26,6 +26,26 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def edit
+    @article = Article.friendly.find(params[:id])
+  end
+
+  def update
+    @article = Article.friendly.find(params[:id])
+    @article.assign_attributes(
+      title: article_params[:title],
+      sub_title: article_params[:sub_title],
+      summary: article_params[:summary],
+      content: wrap_code_blocks(article_params[:content]),
+    )
+
+    if @article.save
+      redirect_to article_path(@article), notice: "Article has been updated"
+    else
+      render :new
+    end
+  end
+
   private
 
   def article_params

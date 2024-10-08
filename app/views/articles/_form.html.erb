@@ -1,0 +1,21 @@
+<%= form_with model: article, id: "article-form" do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :sub_title %>
+    <%= f.text_field :sub_title %>
+  </div>
+  <div class="field">
+    <%= f.label :summary %>
+    <%= f.text_area :summary, rows: 5 %>
+  </div>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.rich_text_area :content %>
+  </div>
+  <div class="submit">
+    <%= f.submit button_text %>
+  </div>
+<% end %>
