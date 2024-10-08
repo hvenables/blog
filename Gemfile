@@ -48,7 +48,7 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  gem 'pry-rails'
+  gem "pry-rails"
 end
 
 group :development do
@@ -56,3 +56,10 @@ group :development do
   gem "web-console"
 end
 
+group :test do
+  gem "minitest"
+  gem "minitest-reporters" 
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "capybara"
+  gem "selenium-webdriver"
+end
