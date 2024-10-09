@@ -1,13 +1,20 @@
-#app > nav {
+#app > header {
   background: rgba(12, 19, 28, 0.8);
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr 70vw 1fr;
   grid-area: header;
 }
 
+.nav-container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column: 2 / 3;
+
+}
+
 @media (max-width:768px)  {
-  #app > nav {
-    grid-template-columns: 1fr;
+  #app > header {
+    grid-template-columns: 1fr 92vw 1fr;
     justify-items: center;
   }
 
@@ -15,11 +22,9 @@
     display: flex;
     justify-content: center;
   }
-}
 
-@media (min-width:768px)  {
-  .logo {
-    padding-left: 200px;
+  .nav-container {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -39,6 +44,7 @@
   min-width: 300px;
   height: 100%;
   align-items: center;
+  justify-content: center;
 
   ul {
     display: flex;

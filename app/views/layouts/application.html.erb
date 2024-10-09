@@ -16,24 +16,26 @@
     <script src="https://kit.fontawesome.com/333069cdb7.js" crossorigin="anonymous"></script>
   </head>
   <body id="app">
-    <nav>
-      <div class="logo">
-        <%= link_to root_path do %>
-          <h2>Harry Codes</h2>
-        <% end %>
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+          <%= link_to root_path do %>
+            <h2>Harry Codes</h2>
+          <% end %>
+        </div>
+        <nav class="nav-links">
+          <ul>
+            <li>
+              <%= link_to "Blog", articles_path %>
+            </li>
+            <li><a href="#">About</a></li>
+            <li>
+              <%= link_to "Contact", contact_path %>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div class="nav-links">
-        <ul>
-          <li>
-            <%= link_to "Blog", articles_path %>
-          </li>
-          <li><a href="#">About</a></li>
-          <li>
-            <%= link_to "Contact", contact_path %>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    </header>
     <div class="content">
       <div class="left-gutter"></div>
       <div class="main-area">
