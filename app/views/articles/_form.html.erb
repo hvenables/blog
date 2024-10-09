@@ -1,6 +1,6 @@
-<%= form_with model: article, id: "article-form" do |f| %>
-  <% if form.object.errors.any? %>
-    <% form.object.errors.full_messages.each do |message| %>
+<%= form_with model: article, id: "article-form", autocomplete: "off" do |f| %>
+  <% if f.object.errors.any? %>
+    <% f.object.errors.full_messages.each do |message| %>
       <div><%= message %></div>
     <% end %>
   <% end %>

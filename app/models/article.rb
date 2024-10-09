@@ -3,6 +3,6 @@ class Article < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  validates :title, :summary, presence: true
+  validates :title, :summary, :content, presence: true
   validates :summary, length: { minimum: 250, maximum: 450 }
 end

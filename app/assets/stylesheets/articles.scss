@@ -3,6 +3,7 @@
   margin-bottom: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
   grid-gap: $viewport-padding;
   height: auto;
 }
@@ -18,6 +19,7 @@
   border: 1px solid $text-gray;
   padding: 20px;
   color: $text-gray;
+  overflow-x: hidden;
 }
 
 
