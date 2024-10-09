@@ -1,16 +1,6 @@
 // Sassy
 
-@font-face {
-  font-family: 'FiraCode';
-  src: url('/assets/FiraCode-Regular.woff2') format('woff2'),
-       url('/assets/FiraCode-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-$text-gray: rgb(191, 196, 201);
-$background-gray: rgb(18, 27, 40);
-
+@import "variables.scss";
 @import "trix";
 @import "actiontext.scss";
 @import "layout.scss";

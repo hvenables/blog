@@ -4,4 +4,5 @@ class Article < ApplicationRecord
   friendly_id :title, use: :slugged
 
   validates :title, :summary, presence: true
+  validates :summary, length: { minimum: 250, maximum: 450 }
 end
