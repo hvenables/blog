@@ -12,9 +12,16 @@
     <%= f.label :sub_title %>
     <%= f.text_field :sub_title %>
   </div>
-  <div class="field">
-    <%= f.label :summary %>
-    <%= f.text_area :summary, rows: 5 %>
+  <div class="field" data-controller="character-counter">
+    <%= f.label :summary do %>
+      <div class="article-summary-label">
+        <span>Summary</span>
+        <span>
+          <strong data-character-counter-target="counter">---</strong><strong>/450</strong>
+        </span>
+      </div>
+    <% end %>
+    <%= f.text_area :summary, rows: 5, maxlength: 450, data: { "character-counter-target": "input" } %>
   </div>
   <div class="field">
     <%= f.label :content %>
