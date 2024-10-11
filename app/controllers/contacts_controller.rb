@@ -1,22 +1,29 @@
 class ContactsController < ApplicationController
-  def show; end
+  def show
+    @contact = Contact.new
+  end
 
   def create
-    ContactMailer
-      .with(
-        name: contact_params[:name],
-        email: contact_params[:email],
-        message: contact_params[:message],
-      )
-      .contact_message
-      .deliver_later
+    @contact = Contact.new(contact_params)
+    if @contact.valid?
+      ContactMailer
+        .with(
+          name: @contact.name,
+          email: @contact.email,
+          message: @contact.message,
+        )
+        .contact_message
+        .deliver_later
 
-    redirect_to contact_path, notice: "Your message has been sent."
+      redirect_to contact_path, notice: "Your message has been sent."
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   private
 
   def contact_params
-    params.permit(:name, :email, :message)
+    params.require(:contact).permit(:name, :email, :message)
   end
 end

@@ -18,31 +18,6 @@
         </a>
       </div>
     </div>
-    <div class="contact-form">
-      <%= form_with url: contact_path do |f| %>
-        <div class="field">
-          <%= f.label :name, "Your name" %>
-          <%= f.text_field :name %>
-        </div>
-        <div class="field">
-          <%= f.label :email, "Your email" %>
-          <%= f.email_field :email %>
-        </div>
-        <div class="field" data-controller="character-counter">
-          <%= f.label :message do %>
-            <div class="contact-message-label">
-              <span>Message</span>
-              <span>
-                <strong data-character-counter-target="counter">---</strong><strong>/1000</strong>
-              </span>
-            </div>
-          <% end %>
-          <%= f.text_area :message, rows: 13, maxlength: 1000, data: { "character-counter-target": "input" } %>
-        </div>
-        <div class="submit">
-          <%= f.submit "Send message", class: "btn" %>
-        </div>
-      <% end %>
-    </div>
+    <%= render "form", contact: @contact %>
   </div>
 </div>
