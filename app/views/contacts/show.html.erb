@@ -1,13 +1,48 @@
 <div class="contact">
-  <div style="width: 100%">
-    <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Taunton+(My%20Business%20Name)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+  <div id="taunton-map" style="width: 100%">
+    <iframe width="500" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Taunton+(My%20Business%20Name)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
       <a href="https://www.gps.ie/">gps trackers</a>
     </iframe>
   </div>
   <div class="contact-means">
     <div class="contact-icons">
+      <div class="icon-container">
+        <a href="https://x.com/HarryVenables" target="_blank">
+          <i class="fa-brands fa-2x fa-twitter"></i>
+        </a>
+        <a href="https://github.com/hvenables" target="_blank">
+          <i class="fa-brands fa-2x fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/harry-venables-28109986" target="_blank">
+          <i class="fa-brands fa-2x fa-linkedin"></i>
+        </a>
+      </div>
     </div>
     <div class="contact-form">
+      <%= form_with url: contact_path do |f| %>
+        <div class="field">
+          <%= f.label :name, "Your name" %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :email, "Your email" %>
+          <%= f.email_field :email %>
+        </div>
+        <div class="field" data-controller="character-counter">
+          <%= f.label :message do %>
+            <div class="contact-message-label">
+              <span>Message</span>
+              <span>
+                <strong data-character-counter-target="counter">---</strong><strong>/1000</strong>
+              </span>
+            </div>
+          <% end %>
+          <%= f.text_area :message, rows: 13, maxlength: 1000, data: { "character-counter-target": "input" } %>
+        </div>
+        <div class="submit">
+          <%= f.submit "Send message", class: "btn" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -18,3 +18,9 @@ $text-gray: rgb(191, 196, 201);
 $text-blue: rgb(128, 159, 255);
 $background-gray: rgb(18, 27, 40);
 $viewport-padding: 32px;
+
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-10px);}
+	60% {transform: translateY(-5px);}
+}

@@ -1,6 +1,56 @@
 .contact {
   padding: 30px 0px;
   display: grid;
-  grid-template-columns: 500px auto;
+  grid-template-columns: auto 1fr;
   grid-gap: 20px;
+}
+
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  height: 52px;
+}
+
+.icon-container {
+  display: inline-block;
+  background-color: $text-gray;
+  border-radius: 26px;
+  width: 231px;
+
+  a {
+    text-decoration: none;
+    color: $background-gray;
+    i {
+      padding: 10px 20px;
+    }
+
+    i:hover {
+      animation: bounce 1.5s ease infinite;
+    }
+  }
+}
+
+.contact-form {
+  form {
+    .field {
+      .contact-message-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      #summary {
+        resize: vertical;
+      }
+    }
+  }
+}
+
+@media (max-width:768px)  {
+  #taunton-map {
+    display: none;
+  }
+
+  .contact {
+    grid-template-columns: 1fr;
+  }
 }
