@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create edit update]
+
   def show
     @article = Article.friendly.find(params[:id])
   end

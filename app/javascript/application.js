@@ -1,29 +1,16 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
-
 import "trix"
 import "@rails/actiontext"
-import hljs from "highlight.js"
 
-hljs.configure({
-  languages: ['ruby', 'javascript', 'css'],
-  es: {
-    next: true,
-  },
-});
+import { highlightPreCodeBlocks } from './modules/code_blocks';
 
-document.addEventListener('turbo:load', () => {
-  document.querySelectorAll('pre code').forEach((block) => {
-    hljs.highlightElement(block);
-  });
-});
+function addMultipleEventListeners(element, events, listener) {
+  events.forEach((event) => element.addEventListener(event, listener));
+}
 
-document.addEventListener('turbo:frame-load', () => {
-  document.querySelectorAll('pre code').forEach((block) => {
-    hljs.highlightElement(block);
-  });
-});
+addMultipleEventListeners(document, ['turbo:load', 'turbo:frame-load', 'turbo:render'], highlightPreCodeBlocks);
 
 Trix.config.textAttributes.inlineCode = {
   tagName: "code",

@@ -15,4 +15,5 @@ Rails.application.routes.draw do
 
   resources :articles
   resource :contact, only: :show
+  resource :session, only: %i[new create destroy]
 end

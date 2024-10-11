@@ -32,6 +32,11 @@
             <li>
               <%= link_to "Contact", contact_path %>
             </li>
+            <% if user_signed_in? %>
+              <li>
+                <%= button_to "Log out", session_path, method: :delete %>
+              </li>
+            <% end %>
           </ul>
         </nav>
       </div>
@@ -39,6 +44,12 @@
     <div class="content">
       <div class="left-gutter"></div>
       <div class="main-area">
+        <% flash.each do |type, message| %>
+          <div data-controller="flash" data-flash-target="message" class="flash-message <%= type %>">
+            <span><%= message %></span>
+            <span data-action="click->flash#hide" class="flash-close">×</span>
+          </div>
+        <% end %>
         <%= yield %>
       </div>
       <div class="right-gutter"></div>

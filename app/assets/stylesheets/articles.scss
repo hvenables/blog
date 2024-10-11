@@ -58,17 +58,12 @@
 }
 
 /* Article Form */
-#article-form {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-#article-form > .field > label {
+.field > label {
   display: block;
   margin-bottom: 5px;
 }
 
-#article-form > .field > input, textarea {
+.field > input, textarea {
   display: block;
   width: 100%;
   padding: 10px;
