@@ -11,6 +11,9 @@ jobs:
       - checkout
       - ruby/install-deps
       - run:
+          name: Install system dependencies
+          command: sudo apt-get update && sudo apt-get install -y libnss3
+      - run:
           name: Install Chrome WebDriver
           command: |
             sudo apt-get install -y chromium-driver
