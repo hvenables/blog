@@ -1,49 +1,51 @@
+
 version: 2.1
 
 jobs:
   build:
-    working_directory: ~/app
     docker:
       - image: cimg/ruby:3.3-node
-        environment:
-          BUNDLE_JOBS: 3
-          BUNDLE_PATH: vendor/bundle
-          BUNDLE_RETRY: 3
-          BUNDLER_VERSION: 2.2.3
-          RAILS_ENV: test
-      - image: circleci/postgres:13.2
-        environment:
-          POSTGRES_PASSWORD: password
     steps:
       - checkout
-      - restore_cache:
-          key: app-{{ checksum "Gemfile.lock" }}
+      - ruby/install-deps
+  test:
+    parallelism: 3
+    docker:
+      - image: cimg/ruby:3.3-node
+      - image: cimg/postgres:12.19
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: blog_test
+          POSTGRES_PASSWORD: "password"
+    environment:
+      BUNDLE_JOBS: "3"
+      BUNDLE_RETRY: "3"
+      PGHOST: 127.0.0.1
+      PGUSER: postgres
+      PGPASSWORD: "password"
+      RAILS_ENV: test
+    steps:
+      - checkout
+      - ruby/install-deps
       - run:
-          name: Configure bundler
-          command: |
-            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
-            source $BASH_ENV
-            gem install bundler
-      - run:
-          name: Yarn install
-          command: yarn install
-      - run:
-          name: Bundle install
-          command: bundle install
-      - save_cache:
-          key: app-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-      - run:
-          name: Wait for postgres
+          name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
-          name: Setup Database
-          command: bundle exec rake db:create db:schema:load --trace
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
       - run:
-          name: Run Rubocop
-          command: bundle exec rubocop --parallel
+          name: Compile Assets
+          command: bundle exec rails assets:precompile
+      - ruby/rubocop-check
       - run:
-          name: Run Test
-          command: rails test
-          when: always
+        name: Test
+        command: rails test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
