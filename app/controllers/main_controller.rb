@@ -1,3 +1,5 @@
 class MainController < ApplicationController
-  def index; end
+  def index
+    @articles = Article.last(4)
+  end
 end

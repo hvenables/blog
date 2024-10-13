@@ -58,3 +58,16 @@ footer {
   }
 }
 
+.read-more {
+  display: inline-block;
+  transition: color 1s ease-out;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+}
+
+.read-more:hover {
+  transition: color 0.5s ease-in;
+  color: $text-blue;
+}
+

@@ -16,31 +16,7 @@
     <script src="https://kit.fontawesome.com/333069cdb7.js" crossorigin="anonymous" defer></script>
   </head>
   <body id="app">
-    <header>
-      <div class="nav-container">
-        <div class="logo">
-          <%= link_to root_path do %>
-            <h2>vena.codes</h2>
-          <% end %>
-        </div>
-        <nav class="nav-links">
-          <ul>
-            <li>
-              <%= link_to "Blog", articles_path %>
-            </li>
-            <li><a href="#">About</a></li>
-            <li>
-              <%= link_to "Contact", contact_path %>
-            </li>
-            <% if user_signed_in? %>
-              <li>
-                <%= button_to "Log out", session_path, method: :delete %>
-              </li>
-            <% end %>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <%= render "layouts/header" %>
     <div class="content">
       <div class="left-gutter"></div>
       <div class="main-area">

@@ -1,5 +1,69 @@
-<h1>Homepage</h1>
+<div class="home-title">
+  <div class="home-image-container">
+    <%= image_tag "about_me_image.jpeg" %>
+  </div>
+  <div class="home-heading">
+    <h1>Harry Venables</h1>
+    <h3>Software Developer</h3>
+  </div>
+</div>
 
-<% if user_signed_in? %>
-  <%= link_to "New Article", new_article_path %>
-<% end %>
+
+<div class="about-contact">
+  <div class="about">
+    <h2>About me</h2>
+    <p>By day, you'll usually find me knee-deep in Ruby, happily wrangling code. But I’m always up for a little adventure into other programming languages—if it has syntax, I’m interested! Learning new languages and paradigms keeps me on my toes (and occasionally scratching my head).</p>
+    <p>I call Taunton, in the beautiful southwest of the UK, home. When I’m not behind a screen, I’m either out riding the waves or wandering the countryside. Basically, if it’s outdoors, I’m in.</p>
+    <%= link_to about_path, class: "read-more" do %>
+        Read more <i class="fa-solid fa-arrow-right"></i>
+    <% end %>
+  </div>
+  <div class="home-contact">
+    <h2>Find me here</h2>
+    <div class="home-icon-container">
+      <a href="https://x.com/HarryVenables" target="_blank">
+        <i class="fa-brands fa-2x fa-twitter"></i>
+        <span>Twitter</span>
+      </a>
+      <a href="https://github.com/hvenables" target="_blank">
+        <i class="fa-brands fa-2x fa-github"></i>
+        <span>Github</span>
+      </a>
+      <a href="https://www.linkedin.com/in/harry-venables-28109986" target="_blank">
+        <i class="fa-brands fa-2x fa-linkedin"></i>
+        <span>Linkedin</span>
+      </a>
+    </div>
+    <p>Want to say hi? Mail me at: <a href="mailto:hvenables89@gmail.com" class="read-more">hvenables89@gmail.com</a><p>
+  </div>
+</div>
+<br>
+<hr>
+<h2>Latest Articles</h2>
+<div class="articles-container">
+  <% if @articles.any? %>
+    <% @articles.each do |article| %>
+      <article class="article">
+        <%= link_to article_path(article), class: "article-title article-link" do %>
+          <h3 class="article-heading">
+            <%= article.title %>
+          </h3>
+        <% end %>
+        <h5 class="article-heading sub-title">
+          <%= article.sub_title %>
+        </h5>
+        <p class="article-summary">
+          <%= article.summary.truncate(450) %>
+        </p>
+        <%= link_to article_path(article), class: "read-more" do %>
+          Read more <i class="fa-solid fa-arrow-right"></i>
+        <% end %>
+      </article>
+    <% end %>
+  <% else %>
+    <h2>No Articles</h2>
+  <% end %>
+</div>
+<div class="more-articles">
+  <%= link_to "More Articles", articles_path, class: "btn" %>
+</div>

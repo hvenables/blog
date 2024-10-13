@@ -26,6 +26,10 @@
   padding-left: 15px;
 }
 
+.trix-content > div > a {
+  color: $text-blue;
+}
+
 .trix-content > pre {
   background-color: transparent;
 }
