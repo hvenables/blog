@@ -37,33 +37,31 @@
     <p>Want to say hi? Mail me at: <a href="mailto:hvenables89@gmail.com" class="read-more">hvenables89@gmail.com</a><p>
   </div>
 </div>
-<br>
-<hr>
-<h2>Latest Articles</h2>
-<div class="articles-container">
-  <% if @articles.any? %>
-    <% @articles.each do |article| %>
-      <article class="article">
-        <%= link_to article_path(article), class: "article-title article-link" do %>
-          <h3 class="article-heading">
-            <%= article.title %>
-          </h3>
-        <% end %>
-        <h5 class="article-heading sub-title">
-          <%= article.sub_title %>
-        </h5>
-        <p class="article-summary">
-          <%= article.summary.truncate(450) %>
-        </p>
-        <%= link_to article_path(article), class: "read-more" do %>
-          Read more <i class="fa-solid fa-arrow-right"></i>
-        <% end %>
-      </article>
-    <% end %>
-  <% else %>
-    <h2>No Articles</h2>
-  <% end %>
-</div>
-<div class="more-articles">
-  <%= link_to "More Articles", articles_path, class: "btn" %>
-</div>
+<% if @articles.any? %>
+  <br>
+  <hr>
+  <h2>Latest Articles</h2>
+  <div class="articles-container">
+      <% @articles.each do |article| %>
+        <article class="article">
+          <%= link_to article_path(article), class: "article-title article-link" do %>
+            <h3 class="article-heading">
+              <%= article.title %>
+            </h3>
+          <% end %>
+          <h5 class="article-heading sub-title">
+            <%= article.sub_title %>
+          </h5>
+          <p class="article-summary">
+            <%= article.summary.truncate(450) %>
+          </p>
+          <%= link_to article_path(article), class: "read-more" do %>
+            Read more <i class="fa-solid fa-arrow-right"></i>
+          <% end %>
+        </article>
+      <% end %>
+  </div>
+  <div class="more-articles">
+    <%= link_to "More Articles", articles_path, class: "btn" %>
+  </div>
+<% end %>
