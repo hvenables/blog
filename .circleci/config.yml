@@ -1,0 +1,82 @@
+version: 2.1
+
+executors:
+  ruby-executor:
+    docker:
+      - image: circleci/ruby:3.2.2-node-browsers
+    working_directory: ~/rails-app
+
+jobs:
+  setup:
+    executor: ruby-executor
+    steps:
+      - checkout
+      - run:
+          name: Install system dependencies
+          command: sudo apt-get update && sudo apt-get install -y libnss3
+      - run:
+          name: Install Chrome WebDriver
+          command: |
+            sudo apt-get install -y chromium-driver
+      - run:
+          name: Install Yarn
+          command: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
+                   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
+                   && sudo apt-get update && sudo apt-get install yarn
+      - run:
+          name: Install Bundler
+          command: gem install bundler
+      - run:
+          name: Bundle Install
+          command: bundle install --jobs=4 --retry=3
+      - run:
+          name: Yarn Install
+          command: yarn install --check-files
+
+  rubocop:
+    executor: ruby-executor
+    steps:
+      - checkout
+      - run:
+          name: Run RuboCop
+          command: bundle exec rubocop
+
+  test:
+    executor: ruby-executor
+    steps:
+      - checkout
+      - run:
+          name: Prepare Database
+          command: |
+            bundle exec rails db:create db:schema:load --trace
+      - run:
+          name: Run Minitest
+          command: bundle exec rails test
+
+  system_test:
+    executor: ruby-executor
+    steps:
+      - checkout
+      - run:
+          name: Prepare Database
+          command: |
+            bundle exec rails db:create db:schema:load --trace
+      - run:
+          name: Run System Tests
+          command: |
+            bundle exec rails test:system
+
+workflows:
+  version: 2
+  test_and_lint:
+    jobs:
+      - setup
+      - rubocop:
+          requires:
+            - setup
+      - test:
+          requires:
+            - setup
+      - system_test:
+          requires:
+            - setup
