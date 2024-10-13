@@ -42,6 +42,9 @@ jobs:
       - run:
           name: Test
           command: bundle exec rails test
+      - run:
+          name: System Test
+          command: bundle exec rails test:system
 
 workflows:
   version: 2
