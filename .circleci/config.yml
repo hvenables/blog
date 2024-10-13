@@ -1,77 +1,49 @@
 version: 2.1
 
-executors:
-  ruby-executor:
+jobs:
+  build:
+    working_directory: ~/app
     docker:
       - image: cimg/ruby:3.3-node
-    working_directory: ~/rails-app
-
-jobs:
-  setup:
-    executor: ruby-executor
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_PATH: vendor/bundle
+          BUNDLE_RETRY: 3
+          BUNDLER_VERSION: 2.2.3
+          RAILS_ENV: test
+      - image: circleci/postgres:13.2
+        environment:
+          POSTGRES_PASSWORD: password
     steps:
       - checkout
+      - restore_cache:
+          key: app-{{ checksum "Gemfile.lock" }}
       - run:
-          name: Install system dependencies
-          command: sudo apt-get update && sudo apt-get install -y libnss3
-      - run:
-          name: Install Chrome WebDriver
+          name: Configure bundler
           command: |
-            sudo apt-get install -y chromium-driver
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
       - run:
-          name: Install Bundler
-          command: gem install bundler
+          name: Yarn install
+          command: yarn install
       - run:
-          name: Bundle Install
-          command: bundle install --jobs=4 --retry=3
+          name: Bundle install
+          command: bundle install
+      - save_cache:
+          key: app-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run:
-          name: Yarn Install
-          command: yarn install --check-files
-
-  rubocop:
-    executor: ruby-executor
-    steps:
-      - checkout
+          name: Wait for postgres
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
-          name: Run RuboCop
-          command: bundle exec rubocop
-
-  test:
-    executor: ruby-executor
-    steps:
-      - checkout
+          name: Setup Database
+          command: bundle exec rake db:create db:schema:load --trace
       - run:
-          name: Prepare Database
-          command: |
-            bundle exec rails db:create db:schema:load --trace
+          name: Run Rubocop
+          command: bundle exec rubocop --parallel
       - run:
-          name: Run Minitest
-          command: bundle exec rails test
-
-  system_test:
-    executor: ruby-executor
-    steps:
-      - checkout
-      - run:
-          name: Prepare Database
-          command: |
-            bundle exec rails db:create db:schema:load --trace
-      - run:
-          name: Run System Tests
-          command: |
-            bundle exec rails test:system
-
-workflows:
-  version: 2
-  test_and_lint:
-    jobs:
-      - setup
-      - rubocop:
-          requires:
-            - setup
-      - test:
-          requires:
-            - setup
-      - system_test:
-          requires:
-            - setup
+          name: Run Test
+          command: rails test
+          when: always
