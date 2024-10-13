@@ -25,7 +25,6 @@
     }
 
     i:hover {
-      @include bounce-animation(10px, 5px);
       animation: bounce 1.5s infinite;
     }
   }

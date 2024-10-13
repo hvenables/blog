@@ -19,22 +19,8 @@ $text-blue: rgb(128, 159, 255);
 $background-gray: rgb(18, 27, 40);
 $viewport-padding: 32px;
 
-@mixin bounce-animation($translateY1, $translateY2) {
-  @keyframes bounce {
-    @for $i from 0 through 100 {
-      @if $i == 0 or $i == 20 or $i == 50 or $i == 80 or $i == 100 {
-        #{$i}% {
-          transform: translateY(0);
-        }
-      } @else if $i == 40 {
-        40% {
-          transform: translateY(-#{$translateY1});
-        }
-      } @else if $i == 60 {
-        60% {
-          transform: translateY(-#{$translateY2});
-        }
-      }
-    }
-  }
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
 }
