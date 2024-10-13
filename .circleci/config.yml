@@ -41,7 +41,7 @@ jobs:
       - ruby/rubocop-check
       - run:
           name: Test
-          command: rails test
+          command: bundle exec rails test
 
 workflows:
   version: 2
