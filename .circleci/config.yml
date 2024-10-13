@@ -10,6 +10,10 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
+      - run:
+          name: Install Chrome WebDriver
+          command: |
+            sudo apt-get install -y chromium-driver
   test:
     parallelism: 3
     docker:
