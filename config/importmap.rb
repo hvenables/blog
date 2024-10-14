@@ -9,3 +9,4 @@ pin "trix"
 pin "@rails/actiontext", to: "actiontext.esm.js"
 pin "highlight.js", to: "https://ga.jspm.io/npm:highlight.js@11.4.0/es/index.js"
 pin "@stimulus-components/character-counter", to: "@stimulus-components--character-counter.js" # @5.0.0
+pin "modules/code_blocks", to: "modules/code_blocks.js"
