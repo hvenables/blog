@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.with_rich_text_content.first(10)
+    @articles = Article.order(created_at: :desc).first(10)
   end
 
   def new
@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
       title: article_params[:title],
       sub_title: article_params[:sub_title],
       summary: article_params[:summary],
-      content: wrap_code_blocks(article_params[:content]),
+      content: TrixPreProcessor.new(article_params[:content]).process,
     )
 
     if @article.save
@@ -38,7 +38,7 @@ class ArticlesController < ApplicationController
       title: article_params[:title],
       sub_title: article_params[:sub_title],
       summary: article_params[:summary],
-      content: wrap_code_blocks(article_params[:content]),
+      content: TrixPreProcessor.new(article_params[:content]).process,
     )
 
     if @article.save
@@ -52,9 +52,5 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :sub_title, :summary, :content)
-  end
-
-  def wrap_code_blocks(content)
-    content.gsub(/<pre>([\s\S]*?)<\/pre>/, '<pre><code>\1</code></pre>')
   end
 end

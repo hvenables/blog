@@ -57,3 +57,12 @@
   align-items: center;
   justify-content: space-between;
 }
+
+:not(pre) {
+  code {
+    color: #e02b63;
+    background-color: #1a1b26;
+    padding: 3px !important;
+    border-radius: 3px;
+  }
+}
