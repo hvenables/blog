@@ -15,10 +15,7 @@
         </li>
         <% if user_signed_in? %>
           <li>
-            <%= link_to "New Article", new_article_path %>
-          </li>
-          <li>
-            <%= button_to "Log out", session_path, method: :delete %>
+            <%= link_to "Admin", admin_dashboard_path %>
           </li>
         <% end %>
       </ul>

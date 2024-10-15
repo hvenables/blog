@@ -1,0 +1,17 @@
+<div class="actions">
+  <%= link_to "New Article", new_article_path, class: 'btn' %>
+  <%= button_to "Log out", session_path, method: :delete, class: 'btn' %>
+</div>
+
+<hr>
+
+<h2>Unpublished Articles</h2>
+<div class="articles-container">
+  <% if @articles.any? %>
+    <% @articles.each do |article| %>
+      <%= render 'articles/article', article: article %>
+    <% end %>
+  <% else %>
+    <h2>No Articles</h2>
+  <% end %>
+</div>
