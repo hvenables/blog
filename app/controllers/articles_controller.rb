@@ -2,11 +2,12 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update]
 
   def show
-    @article = Article.friendly.find(params[:id])
+    articles = user_signed_in? ? Article : Article.published
+    @article = articles.friendly.find(params[:id])
   end
 
   def index
-    @articles = Article.order(created_at: :desc).first(10)
+    @articles = Article.published.order(published_at: :desc).first(10)
   end
 
   def new
@@ -15,10 +16,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(
-      title: article_params[:title],
-      sub_title: article_params[:sub_title],
-      summary: article_params[:summary],
       content: TrixPreProcessor.new(article_params[:content]).process,
+      **article_params.except(:content)
     )
 
     if @article.save
@@ -35,10 +34,8 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.friendly.find(params[:id])
     @article.assign_attributes(
-      title: article_params[:title],
-      sub_title: article_params[:sub_title],
-      summary: article_params[:summary],
       content: TrixPreProcessor.new(article_params[:content]).process,
+      **article_params.except(:content)
     )
 
     if @article.save
@@ -51,6 +48,6 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :sub_title, :summary, :content)
+    params.require(:article).permit(:title, :sub_title, :summary, :content, :published)
   end
 end

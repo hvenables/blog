@@ -5,4 +5,18 @@ class Article < ApplicationRecord
 
   validates :title, :summary, :content, presence: true
   validates :summary, length: { minimum: 150, maximum: 450 }
+
+  scope :published, -> { where.not(published_at: nil) }
+
+  def published
+    published_at.present?
+  end
+
+  def published=(value)
+    if value == '1'
+      self.published_at = Time.current
+    else
+      self.published_at = nil
+    end
+  end
 end

@@ -43,22 +43,7 @@
   <h2>Latest Articles</h2>
   <div class="articles-container">
       <% @articles.each do |article| %>
-        <article class="article">
-          <%= link_to article_path(article), class: "article-title article-link" do %>
-            <h3 class="article-heading">
-              <%= article.title %>
-            </h3>
-          <% end %>
-          <h5 class="article-heading sub-title">
-            <%= article.sub_title %>
-          </h5>
-          <p class="article-summary">
-            <%= article.summary.truncate(450) %>
-          </p>
-          <%= link_to article_path(article), class: "read-more" do %>
-            Read more <i class="fa-solid fa-arrow-right"></i>
-          <% end %>
-        </article>
+        <%= render 'articles/article', article: article %>
       <% end %>
   </div>
   <div class="more-articles">

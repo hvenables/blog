@@ -8,6 +8,10 @@
     margin-bottom: 5px;
   }
 
+  .checkbox-label {
+    display: inline-block;
+  }
+
   input, textarea {
     display: block;
     width: 100%;
@@ -20,5 +24,10 @@
     color: inherit;
     border: 1px solid $text-gray;
     box-sizing: border-box;
+  }
+
+  input[type='checkbox'] {
+    display: inline-block;
+    width: inherit;
   }
 }

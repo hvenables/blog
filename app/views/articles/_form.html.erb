@@ -27,6 +27,10 @@
     <%= f.label :content %>
     <%= f.rich_text_area :content %>
   </div>
+  <div class="field">
+    <%= f.label :published, 'Publish', class: 'checkbox-label' %>
+    <%= f.check_box :published %>
+  </div>
   <div class="submit">
     <%= f.submit button_text, class: "btn" %>
   </div>

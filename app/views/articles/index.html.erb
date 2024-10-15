@@ -1,22 +1,7 @@
 <div class="articles-container">
   <% if @articles.any? %>
     <% @articles.each do |article| %>
-      <article class="article">
-        <%= link_to article_path(article), class: "article-title article-link" do %>
-          <h3 class="article-heading">
-            <%= article.title %>
-          </h3>
-        <% end %>
-        <h5 class="article-heading sub-title">
-          <%= article.sub_title %>
-        </h5>
-        <p class="article-summary">
-          <%= article.summary.truncate(450) %>
-        </p>
-        <%= link_to article_path(article), class: "read-more" do %>
-          Read more <i class="fa-solid fa-arrow-right"></i>
-        <% end %>
-      </article>
+      <%= render 'article', article: article %>
     <% end %>
   <% else %>
     <h2>No Articles</h2>
