@@ -27,7 +27,7 @@ class ArticleTest < ActiveSupport::TestCase
 
   test "#published_at= will set published at to nil unless value is '1'" do
     article = Article.new(published_at: Time.current)
-    article.published_at = '0'
+    article.published_at = "0"
 
     assert_nil article.published_at
   end
