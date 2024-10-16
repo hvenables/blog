@@ -3,6 +3,8 @@
 
 <h1><%= @article.title %></h1>
 
+<%= image_tag(@article.feature_image) if @article.feature_image.attached? %>
+
 <h3><%= @article.sub_title %></h4>
 
 <%= @article.content %>

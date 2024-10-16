@@ -1,6 +1,9 @@
 class Article < ApplicationRecord
-  has_rich_text :content
   extend FriendlyId
+
+  has_one_attached :feature_image
+  has_rich_text :content
+
   friendly_id :title, use: :slugged
 
   validates :title, :summary, :content, presence: true
