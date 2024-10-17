@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   def show
     articles = user_signed_in? ? Article : Article.published
@@ -42,6 +42,16 @@ class ArticlesController < ApplicationController
       redirect_to article_path(@article), notice: "Article has been updated"
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @article = Article.friendly.find(params[:id])
+
+    if @article.destroy
+      redirect_to admin_dashboard_path, notice: "Article deleted"
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
