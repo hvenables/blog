@@ -10,6 +10,6 @@ class TrixPreProcessor
   private
 
   def insert_code_blocks
-    @content.gsub(/<pre>(?![\s\S]*<code>)([\s\S]*?)<\/pre>/, '<pre><code>\1</code></pre>')
+    @content.gsub(/<pre>(?:(?!<code>)([\s\S]*?))<\/pre>/, '<pre><code>\1</code></pre>')
   end
 end
