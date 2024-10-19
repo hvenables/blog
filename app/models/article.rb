@@ -15,6 +15,7 @@ class Article < ApplicationRecord
   def published
     published_at.present?
   end
+  alias_method :published?, :published
 
   def published=(value)
     if value == "1"
