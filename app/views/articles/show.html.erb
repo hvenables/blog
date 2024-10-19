@@ -1,18 +1,21 @@
 <% content_for :title, @article.title %>
 <% content_for :description, @article.summary %>
+<div class="article-container">
+  <div>
+    <h1><%= @article.title %></h1>
 
-<h1><%= @article.title %></h1>
+    <%= image_tag(@article.feature_image) if @article.feature_image.attached? %>
 
-<%= image_tag(@article.feature_image) if @article.feature_image.attached? %>
+    <h3><%= @article.sub_title %></h4>
 
-<h3><%= @article.sub_title %></h4>
+    <%= @article.content %>
 
-<%= @article.content %>
-
-<% if user_signed_in? %>
-  <br>
-  <div class="actions">
-    <%= link_to "Edit", edit_article_path(@article), class: "btn" %>
-    <%= button_to "Delete", article_path(@article), method: :delete, class: 'btn btn-danger', form: {data: {turbo_confirm: 'Are you sure you want to delete?'}} %>
+    <% if user_signed_in? %>
+      <br>
+      <div class="actions">
+        <%= link_to "Edit", edit_article_path(@article), class: "btn" %>
+        <%= button_to "Delete", article_path(@article), method: :delete, class: 'btn btn-danger', form: {data: {turbo_confirm: 'Are you sure you want to delete?'}} %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

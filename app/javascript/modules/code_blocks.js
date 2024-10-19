@@ -1,7 +1,7 @@
 import hljs from "highlight.js"
 
 hljs.configure({
-  languages: ['ruby', 'javascript', 'css'],
+  languages: ['ruby', 'javascript', 'css', 'shell'],
   es: {
     next: true,
   },

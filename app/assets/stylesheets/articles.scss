@@ -21,7 +21,6 @@
   overflow-x: hidden;
 }
 
-
 .article-title:hover {
   text-decoration: underline;
   text-decoration-color: $text-blue;
@@ -45,6 +44,20 @@
 
 .sub-title {
   color: #838990;
+}
+
+.article-container {
+  display: flex;
+  justify-content: center;
+
+  div {
+    max-width: 680px;
+
+    img {
+      width: 100%;
+      object-fit: cover; /* Ensures the image covers the parent, even if it crops */
+    }
+  }
 }
 
 /* Article Form */
