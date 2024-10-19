@@ -3,6 +3,7 @@
 <div class="article-container">
   <div>
     <h1><%= @article.title %></h1>
+    <h5><%= @article.published_at.to_formatted_s(:long) %><h5>
 
     <%= image_tag(@article.feature_image) if @article.feature_image.attached? %>
 
