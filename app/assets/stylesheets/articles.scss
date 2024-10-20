@@ -14,9 +14,8 @@
 }
 
 .article {
-  border-radius: 6px;
-  border: 1px solid $text-gray;
-  padding: 20px;
+  @include box;
+
   color: $text-gray;
   overflow-x: hidden;
 }

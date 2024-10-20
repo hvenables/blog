@@ -37,9 +37,7 @@
   grid-gap: 20px;
 
   .about, .home-contact {
-    border: 1px solid $text-gray;
-    border-radius: 6px;
-    padding: 20px;
+    @include box;
 
     h2 {
       margin-top: 0;
