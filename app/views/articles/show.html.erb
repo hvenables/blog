@@ -1,5 +1,9 @@
 <% content_for :title, @article.title %>
 <% content_for :description, @article.summary %>
+<% content_for :url, article_url(@article) %>
+<% content_for :image, social_image(@article) %>
+<% content_for :type, "article" %>
+
 <div class="article-container">
   <div>
     <h1><%= @article.title %></h1>
