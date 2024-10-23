@@ -6,8 +6,12 @@ class Article < ApplicationRecord
 
   friendly_id :title, use: :slugged
 
-  validates :title, :summary, :content, presence: true
-  validates :summary, length: { minimum: 150, maximum: 450 }
+  validates :title, presence: true
+
+  with_options if: :published? do
+    validates :summary, :content, presence: true
+    validates :summary, length: { minimum: 150, maximum: 450 }, if: :summary
+  end
 
   scope :published, -> { where.not(published_at: nil) }
   scope :unpublished, -> { where(published_at: nil) }

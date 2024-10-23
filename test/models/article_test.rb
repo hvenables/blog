@@ -2,11 +2,24 @@ require "test_helper"
 
 class ArticleTest < ActiveSupport::TestCase
   test "article requires a title" do
-    assert_not Article.new(summary: "Test").valid?
+    article = Article.new
+
+    assert_not article.valid?
+    assert_equal article.errors.full_messages.sole, "Title can't be blank"
   end
 
-  test "article requires a summary" do
-    assert_not Article.new(title: "Test").valid?
+  test "article requires a summary if published" do
+    article = Article.new(title: "Test", content: "test", published_at: Time.current)
+
+    assert_not article.valid?
+    assert_equal article.errors.full_messages.sole, "Summary can't be blank"
+  end
+
+  test "article requires content if published" do
+    article = Article.new(title: "Test", summary: "a" * 151, published_at: Time.current)
+
+    assert_not article.valid?
+    assert_equal article.errors.full_messages.sole, "Content can't be blank"
   end
 
   test "#published is true when published at timestamp" do
