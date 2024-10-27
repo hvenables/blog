@@ -4,6 +4,8 @@ class ArticlesController < ApplicationController
   def show
     articles = user_signed_in? ? Article : Article.published
     @article = articles.friendly.find(params[:id])
+
+    fresh_when @article
   end
 
   def index
