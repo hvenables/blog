@@ -18,6 +18,11 @@
 
     <%= @article.content %>
 
+    <div>
+      <span><%= @article.likes.count %></span>
+      <%= button_to "Like", article_likes_path(@article), class: "btn" %>
+    </div>
+
     <% if user_signed_in? %>
       <br>
       <div class="actions">

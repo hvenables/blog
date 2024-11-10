@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   root "main#index"
 
-  resources :articles
+  resources :articles do
+    resources :likes, only: :create
+  end
   resource :contact, only: %i[show create]
   resource :session, only: %i[new create destroy]
   resource :about, only: :show
