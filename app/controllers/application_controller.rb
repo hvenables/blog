@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
       raise unless salt
 
       value = Digest::SHA256.hexdigest("#{request.ip}#{salt}")
-      cookies[:uuid] = { value: value, expires: 1.year.from_now, httponly: true }
+      cookies[:uuid] = { value: value, expires: 1.month.from_now, httponly: true }
     end
   end
 end

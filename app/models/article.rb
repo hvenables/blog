@@ -3,7 +3,7 @@ class Article < ApplicationRecord
 
   has_one_attached :feature_image
   has_rich_text :content
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
   friendly_id :title, use: :slugged
 
