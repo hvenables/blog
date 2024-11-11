@@ -1,3 +1,3 @@
 class Like < ApplicationRecord
-  belongs_to :article
+  belongs_to :article, touch: true
 end

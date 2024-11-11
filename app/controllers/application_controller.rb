@@ -31,4 +31,14 @@ class ApplicationController < ActionController::Base
     Current.user = nil
     reset_session
   end
+
+  def set_anonymous_user_id
+    unless cookies[:uuid]
+      salt = Rails.application.credentials[:ip_hash_salt]
+      raise unless salt
+
+      value = Digest::SHA256.hexdigest("#{request.ip}#{salt}")
+      cookies[:uuid] = { value: value, expires: 1.year.from_now, httponly: true }
+    end
+  end
 end

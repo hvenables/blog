@@ -1,16 +1,13 @@
 class LikesController < ApplicationController
-  before_action :set_user_id, only: :create
+  before_action :set_anonymous_user_id
 
   def create
-    article = Article.friendly.find(params[:article_id])
-    Like.create!(uuid: cookies[:user_id], article: article)
+    @article = Article.friendly.find(params[:article_id])
+    Like.create!(uuid: cookies[:uuid], article: @article)
   end
 
-  private
-
-  def set_user_id
-    unless cookies[:user_id]
-      cookies[:user_id] = { value: SecureRandom.uuid, expires: 1.year.from_now, httponly: true }
-    end
+  def destroy
+    @article = Article.friendly.find(params[:article_id])
+    Like.find_by!(uuid: cookies[:uuid], article: @article).destroy
   end
 end

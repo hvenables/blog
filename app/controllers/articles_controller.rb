@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :set_anonymous_user_id, only: :show
 
   def show
     articles = user_signed_in? ? Article : Article.published

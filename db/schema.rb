@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_09_190832) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_likes_on_article_id"
-    t.index ["uuid"], name: "index_likes_on_uuid", unique: true
+    t.index ["uuid", "article_id"], name: "index_likes_on_uuid_and_article_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

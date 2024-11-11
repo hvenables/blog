@@ -18,10 +18,9 @@
 
     <%= @article.content %>
 
-    <div>
-      <span><%= @article.likes.count %></span>
-      <%= button_to "Like", article_likes_path(@article), class: "btn" %>
-    </div>
+    <%= turbo_frame_tag "article-likes" do %>
+      <%= render "likes/like_article", article: @article %>
+    <% end %>
 
     <% if user_signed_in? %>
       <br>
