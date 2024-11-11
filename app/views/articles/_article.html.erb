@@ -10,7 +10,12 @@
   <p class="article-summary">
   <%= article.summary.truncate(450) %>
   </p>
-  <%= link_to article_path(article), class: "read-more" do %>
-    Read more <i class="fa-solid fa-arrow-right"></i>
-  <% end %>
+  <div class="article-footer">
+    <%= link_to article_path(article), class: "read-more" do %>
+      Read more <i class="fa-solid fa-arrow-right"></i>
+    <% end %>
+    <span>
+      <%= pluralize(article.likes.count, "Like") %>
+    </span>
+  </div>
 </article>

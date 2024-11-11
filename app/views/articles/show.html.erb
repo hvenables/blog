@@ -18,6 +18,10 @@
 
     <%= @article.content %>
 
+    <%= turbo_frame_tag "article-likes" do %>
+      <%= render "likes/like_article", article: @article %>
+    <% end %>
+
     <% if user_signed_in? %>
       <br>
       <div class="actions">

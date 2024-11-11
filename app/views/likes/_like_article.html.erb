@@ -1,0 +1,14 @@
+<div class="like-container">
+  <span>
+    <span><%= article.likes.count %></span>
+    <% if article.likes.exists?(uuid: cookies[:uuid]) %>
+      <%= button_to article_likes_path(article), method: :delete, class: "like" do %>
+        <i class="fa-solid fa-heart fa-2xl"></i>
+      <% end %>
+    <% else %>
+      <%= button_to article_likes_path(article), class: "like" do %>
+        <i class="fa-regular fa-heart fa-2xl"></i>
+      <% end %>
+    <% end %>
+  </span>
+</div>
