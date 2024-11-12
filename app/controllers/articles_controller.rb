@@ -15,8 +15,11 @@ class ArticlesController < ApplicationController
 
   def feed
     @articles = Article.published.order(published_at: :desc).last(10)
-    respond_to do |format|
-      format.xml { render layout: false, formats: [:rss], content_type: "application/xml" }
+
+    if stale?(last_modified: @articles.maximum(:updated_at), etag: @articles, public: true)
+      respond_to do |format|
+        format.xml { render layout: false, formats: [:rss] }
+      end
     end
   end
 
