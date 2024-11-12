@@ -13,6 +13,16 @@ class ArticlesController < ApplicationController
     @articles = Article.published.order(published_at: :desc).first(10)
   end
 
+  def feed
+    @articles = Article.published.order(published_at: :desc).last(10)
+
+    if stale?(last_modified: @articles.maximum(:updated_at), etag: @articles, public: true)
+      respond_to do |format|
+        format.xml { render layout: false, formats: [:rss] }
+      end
+    end
+  end
+
   def new
     @article = Article.new
   end
