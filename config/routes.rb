@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root "main#index"
 
   resources :articles do
+    get :feed, on: :collection, defaults: { format: :xml }
     resources :likes, only: :create do
       collection do
         delete :destroy

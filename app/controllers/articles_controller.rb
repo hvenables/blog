@@ -13,6 +13,13 @@ class ArticlesController < ApplicationController
     @articles = Article.published.order(published_at: :desc).first(10)
   end
 
+  def feed
+    @articles = Article.published.order(published_at: :desc).last(10)
+    respond_to do |format|
+      format.xml { render layout: false, formats: [:rss], content_type: "application/xml" }
+    end
+  end
+
   def new
     @article = Article.new
   end
