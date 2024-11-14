@@ -4,8 +4,7 @@ class ArticlesTest < ApplicationSystemTestCase
   test "create an article" do
     login(users(:first).email, "password")
 
-    visit root_path
-
+    click_on "Admin"
     click_on "New Article"
 
     fill_in "article_title", with: "Test Title"
@@ -21,8 +20,7 @@ class ArticlesTest < ApplicationSystemTestCase
   test "update an article" do
     login(users(:first).email, "password")
 
-    visit articles_path
-
+    click_on "Admin"
     click_on articles(:first).title
     click_on "Edit"
 

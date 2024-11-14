@@ -6,21 +6,16 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.3-node
+      - image: cimg/ruby:3.3-browsers
     steps:
       - checkout
       - ruby/install-deps
       - run:
           name: Install system dependencies
           command: sudo apt-get update && sudo apt-get install -y libnss3
-      - run:
-          name: Install Chrome WebDriver
-          command: |
-            sudo apt-get install -y chromium-driver
   test:
-    parallelism: 3
     docker:
-      - image: cimg/ruby:3.3-node
+      - image: cimg/ruby:3.3-browsers
       - image: cimg/postgres:12.19
         environment:
           POSTGRES_USER: postgres
@@ -49,6 +44,9 @@ jobs:
       - run:
           name: Test
           command: bundle exec rails test
+      - run:
+          name: System Tests
+          command: bundle exec rails test:system
 
 workflows:
   version: 2
