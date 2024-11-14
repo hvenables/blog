@@ -42,7 +42,10 @@ jobs:
       - run:
           name: Install Chrome WebDriver
           command: |
-            sudo apt-get install -y chromium-driver
+            sudo apt-get update
+            sudo apt-get install -y wget curl unzip
+            sudo apt-get install -y google-chrome-stable
+            sudo apt-get install -y chromedriver
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
