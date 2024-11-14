@@ -37,6 +37,13 @@ jobs:
       - checkout
       - ruby/install-deps
       - run:
+          name: Install system dependencies
+          command: sudo apt-get update && sudo apt-get install -y libnss3
+      - run:
+          name: Install Chrome WebDriver
+          command: |
+            sudo apt-get install -y chromium-driver
+      - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
@@ -49,10 +56,6 @@ jobs:
       - run:
           name: Test
           command: bundle exec rails test
-      - run:
-          name: Install Chrome WebDriver
-          command: |
-            sudo apt-get install -y chromium-driver
       - run:
           name: System Tests
           command: bundle exec rails test:system
