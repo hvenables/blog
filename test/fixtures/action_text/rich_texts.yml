@@ -3,3 +3,16 @@ first_content:
   name: content
   body: <div>Hello, world.</div>
 
+published_content:
+  record: published (Article)
+  name: content
+  body: >
+    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum vestibulum maximus. Mauris interdum tempus ultrices. Aenean elit metus, tincidunt eget elit ac, auctor congue sem. Nunc blandit nibh nunc, sit amet porta augue mollis eu. Praesent malesuada ac ante vel posuere. Pellentesque sem libero, accumsan eu egestas ut, venenatis non leo. Nullam facilisis orci nec semper euismod. Vestibulum tempor lorem eget metus vulputate dapibus.</div>
+
+    <div>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse potenti. Quisque eget viverra lacus, at sodales neque. Proin ullamcorper, dui a aliquet semper, justo ipsum malesuada purus, ac vehicula dui ligula in sapien. Vestibulum orci quam, pharetra id aliquam in, egestas vitae ipsum. Fusce porttitor lobortis metus eu hendrerit. Duis fringilla accumsan tempor.<div>
+
+    <div>Nulla ultricies tempor nisi ac suscipit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse lacinia, urna sed pulvinar dignissim, odio purus sollicitudin dolor, quis euismod lorem massa et magna. In hac habitasse platea dictumst. Aliquam et nisi arcu. Maecenas pellentesque imperdiet convallis. Ut fermentum tortor tincidunt facilisis imperdiet. Phasellus molestie, sem nec egestas vulputate, nisl lorem finibus ligula, a fermentum odio erat in arcu. Quisque ornare sit amet turpis id vehicula. Maecenas id sagittis risus, a mattis ex. Curabitur vitae libero id ante rhoncus malesuada. Donec bibendum justo quis nisl finibus, quis pharetra sem mattis. Donec nulla lacus, facilisis eget tristique eget, placerat eu enim. Donec rhoncus ante at lorem hendrerit congue.</div>
+
+    <div>Cras euismod euismod tempor. Cras lacinia mollis odio id mollis. Vestibulum suscipit magna lorem, non blandit felis porttitor ut. Sed sodales justo sit amet ante aliquet, ac interdum tortor lacinia. Duis mollis tincidunt neque, eu tincidunt risus blandit in. Fusce ut dolor non massa consequat euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</div>
+
+    <div>Sed malesuada turpis id venenatis laoreet. Suspendisse vel turpis eget ante imperdiet eleifend. Maecenas vel velit quis dui rhoncus consectetur. Sed a consequat eros, a facilisis turpis. Proin pulvinar mattis erat quis feugiat. Aenean felis purus, vulputate ut risus at, elementum tempor metus. Morbi feugiat ac enim viverra dignissim. Fusce elementum, nisl at aliquet accumsan, felis diam condimentum ante, et tincidunt velit odio eu orci. In et dui non massa pellentesque ultricies ac non ante. Fusce vestibulum efficitur sem vitae pellentesque. </div>

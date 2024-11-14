@@ -1,11 +1,9 @@
 require "application_system_test_case"
 
 class ArticlesTest < ApplicationSystemTestCase
-  def setup
-    login(users(:first).email, "password")
-  end
-
   test "create an article" do
+    login(users(:first).email, "password")
+
     visit root_path
 
     click_on "New Article"
@@ -21,6 +19,8 @@ class ArticlesTest < ApplicationSystemTestCase
   end
 
   test "update an article" do
+    login(users(:first).email, "password")
+
     visit articles_path
 
     click_on articles(:first).title
@@ -33,6 +33,24 @@ class ArticlesTest < ApplicationSystemTestCase
 
     assert_selector "h1", text: "Updated Title"
     assert_selector "div", text: "Updated Content"
+  end
+
+  test "Layout of published article" do
+    visit articles_path
+
+    click_on "Published Article"
+    assert_selector "h1", text: "Published Article"
+    assert_selector "h3", text: "This is a subtitle of the main one"
+    assert_selector "h5", text: articles(:published).published_at.to_formatted_s(:long)
+  end
+
+  test "Like an article" do
+    visit articles_path
+
+    click_on "Published Article"
+    find("button.like").click
+
+    assert_selector ".like-count", text: "1"
   end
 
   private

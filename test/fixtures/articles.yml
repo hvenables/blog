@@ -2,3 +2,10 @@ first:
   title: Test Title
   summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue malesuada sollicitudin. Mauris elementum nunc in urna egestas, sed imperdiet ante vestibulum. Fusce vehicula sapien ut erat tincidunt, ut imperdiet sapien tristique. Nullam luctus cursus convallis. Fusce varius ornare est ut eget.
   slug: test-title
+
+published:
+  title: Published Article
+  sub_title: This is a subtitle of the main one
+  summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue malesuada sollicitudin. Mauris elementum nunc in urna egestas, sed imperdiet ante vestibulum. Fusce vehicula sapien ut erat tincidunt, ut imperdiet sapien tristique. Nullam luctus cursus convallis. Fusce varius ornare est ut eget.
+  slug: published-title
+  published_at: <%= Time.current %>
