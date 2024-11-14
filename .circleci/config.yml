@@ -14,7 +14,6 @@ jobs:
           name: Install system dependencies
           command: sudo apt-get update && sudo apt-get install -y libnss3
   test:
-    parallelism: 3
     docker:
       - image: cimg/ruby:3.3-browsers
       - image: cimg/postgres:12.19
