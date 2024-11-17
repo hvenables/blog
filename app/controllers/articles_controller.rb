@@ -10,11 +10,11 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.published.order(published_at: :desc).first(10)
+    @articles = Article.includes(:likes).published.order(published_at: :desc).first(10)
   end
 
   def feed
-    @articles = Article.published.order(published_at: :desc).last(10)
+    @articles = Article.includes(:tags).published.order(published_at: :desc).last(10)
 
     if stale?(last_modified: @articles.maximum(:updated_at), etag: @articles, public: true)
       respond_to do |format|
