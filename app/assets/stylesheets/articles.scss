@@ -70,6 +70,19 @@
   justify-content: space-between;
 }
 
+.tags {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.tag {
+  background-color: $text-gray;
+  border-radius: 5px;
+  color: $background-gray;
+  padding: 3px;
+  font-weight: 700;
+  font-size: small;
+}
 
 /* Article Form */
 #article-form > .field > textarea {

@@ -14,6 +14,10 @@ xml.rss version: "2.0" do
         xml.description article.summary
         xml.pubDate     article.published_at.to_formatted_s(:iso8601)
         xml.guid        article_url(article), isPermaLink: "true"
+
+        article.tags.each do |tag|
+          xml.category tag.name
+        end
       end
     end
   end
