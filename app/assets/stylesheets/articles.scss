@@ -1,5 +1,45 @@
 @use "variables.scss" as *;
 
+.article-card {
+  @include box;
+
+  color: $text-gray;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .title:hover {
+    text-decoration: underline;
+    text-decoration-color: $text-blue;
+    text-decoration-thickness: 2px;
+  }
+
+  .link {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 700;
+  }
+
+  .heading {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .sub-title {
+    color: #838990;
+  }
+
+  .summary {
+    display: block;
+    flex-grow: 1;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .articles-container {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -13,41 +53,6 @@
   .articles-container {
     grid-template-columns: 1fr;
   }
-}
-
-.article {
-  @include box;
-
-  color: $text-gray;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.article-title:hover {
-  text-decoration: underline;
-  text-decoration-color: $text-blue;
-  text-decoration-thickness: 2px;
-}
-
-.article-heading {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.article-summary {
-  display: block;
-  flex-grow: 1;
-}
-
-.article-link {
-  text-decoration: none;
-  color: inherit;
-  font-weight: 700;
-}
-
-.sub-title {
-  color: #838990;
 }
 
 .metadata {
@@ -77,7 +82,6 @@
   }
 }
 
-
 .article-container {
   display: flex;
   justify-content: center;
@@ -91,11 +95,6 @@
       object-fit: cover; /* Ensures the image covers the parent, even if it crops */
     }
   }
-}
-
-.article-footer {
-  display: flex;
-  justify-content: space-between;
 }
 
 /* Article Form */
