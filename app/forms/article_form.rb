@@ -25,11 +25,11 @@ class ArticleForm < ApplicationForm
       title:,
       sub_title:,
       summary:,
-      content: parsed_content,
       published:,
       feature_image:,
       tags:,
     )
+    @article.content = parsed_content if parsed_content
     @article.save!
   end
 
@@ -48,7 +48,10 @@ class ArticleForm < ApplicationForm
   end
 
   def parsed_content
-    TrixPreProcessor.new(content).process
+    case content
+    when String
+      TrixPreProcessor.new(content).process
+    end
   end
 
   def tags
