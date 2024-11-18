@@ -1,20 +1,18 @@
 <%= form_with model: article_form, id: "article-form", autocomplete: "off" do |f| %>
-  <% if f.object.errors.any? %>
-    <% f.object.errors.full_messages.each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  <% end %>
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>
+    <%= render "form_error", form: f, attribute: :title %>
   </div>
   <div class="field">
     <%= f.label :feature_image %>
     <%= f.file_field :feature_image %>
+    <%= render "form_error", form: f, attribute: :feature_image %>
   </div>
   <div class="field">
     <%= f.label :sub_title %>
     <%= f.text_field :sub_title %>
+    <%= render "form_error", form: f, attribute: :sub_title %>
   </div>
   <div class="field" data-controller="character-counter">
     <%= f.label :summary do %>
@@ -26,18 +24,22 @@
       </div>
     <% end %>
     <%= f.text_area :summary, rows: 5, maxlength: 450, data: { "character-counter-target": "input" } %>
+    <%= render "form_error", form: f, attribute: :summary %>
   </div>
   <div class="field">
     <%= f.label :content %>
     <%= f.rich_text_area :content %>
+    <%= render "form_error", form: f, attribute: :content %>
   </div>
   <div class="field">
     <%= f.label :published, 'Publish', class: 'checkbox-label' %>
     <%= f.check_box :published %>
+    <%= render "form_error", form: f, attribute: :published %>
   </div>
   <div class="choices-field">
     <%= f.label :tag_names, "Tags" %>
     <%= f.select :tag_names, options_for_select(Tag.all.map(&:name), f.object.tag_names), {}, { multiple: true, id: "choose-tags" } %>
+    <%= render "form_error", form: f, attribute: :tag_names %>
   </div>
   <div class="submit">
     <%= f.submit button_text, class: "btn" %>

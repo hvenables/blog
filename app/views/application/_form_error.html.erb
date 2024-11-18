@@ -1,0 +1,6 @@
+<% if form.object.errors[attribute].present? %>
+  <div class="error-message" data-controller="error" data-error-target="message">
+    <%= "Your #{attribute} #{form.object.errors[attribute].to_sentence}." %>
+    <span class="error-close" data-action="click->error#close">&times;</span>
+  </div>
+<% end %>

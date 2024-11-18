@@ -5,21 +5,24 @@
 <% content_for :type, "article" %>
 
 <div class="article-container">
-  <div>
+  <div class="article-content">
     <h1><%= @article.title %></h1>
     <h3><%= @article.sub_title %></h3>
 
-    <% if @article.published? %>
-      <h5><%= @article.published_at.to_formatted_s(:long) %></h5>
-    <% end %>
+    <div class="metadata">
+      <% if @article.published? %>
+        <h5 class="publish-date"><%= @article.published_at.to_formatted_s(:long) %></h5>
+      <% end %>
+
+      <div class="tags">
+        <% @article.tags.each do |tag| %>
+            <span class="tag"><%= tag.name.titlecase %></span>
+        <% end %>
+      </div>
+    </div>
+
 
     <%= image_tag(@article.feature_image) if @article.feature_image.attached? %>
-
-    <div class="tags">
-      <% @article.tags.each do |tag| %>
-          <span class="tag"><%= tag.name.titlecase %></span>
-      <% end %>
-    </div>
 
     <%= @article.content %>
 

@@ -40,6 +40,7 @@ class ArticlesTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Published Article"
     assert_selector "h3", text: "This is a subtitle of the main one"
     assert_selector "h5", text: articles(:published).published_at.to_formatted_s(:long)
+    assert_selector "span.tag", text: "Ruby"
   end
 
   test "Like an article" do
@@ -49,6 +50,19 @@ class ArticlesTest < ApplicationSystemTestCase
     find("button.like").click
 
     assert_selector ".like-count", text: "1"
+  end
+
+  test "renders errors" do
+    login(users(:first).email, "password")
+
+    click_on "Admin"
+    click_on "New Article"
+
+    fill_in "article_summary", with: test_summary
+    fill_in_rich_text_area "article_content", with: "Test Content"
+
+    click_on "Create article"
+    assert_selector "div.error-message", text: "Your title can't be blank."
   end
 
   private

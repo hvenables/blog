@@ -50,11 +50,39 @@
   color: #838990;
 }
 
+.metadata {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .publish-date {
+    display: inline-block;
+    flex-grow: 1;
+    margin-top: 8px;
+  }
+
+  .tags {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    display: inline-block;
+
+    .tag {
+      background-color: $text-gray;
+      border-radius: 5px;
+      color: $background-gray;
+      padding: 3px;
+      font-weight: 700;
+      font-size: small;
+    }
+  }
+}
+
+
 .article-container {
   display: flex;
   justify-content: center;
 
-  div {
+  .article-content {
     width: 100%;
     max-width: 680px;
 
@@ -68,20 +96,6 @@
 .article-footer {
   display: flex;
   justify-content: space-between;
-}
-
-.tags {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-.tag {
-  background-color: $text-gray;
-  border-radius: 5px;
-  color: $background-gray;
-  padding: 3px;
-  font-weight: 700;
-  font-size: small;
 }
 
 /* Article Form */
