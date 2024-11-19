@@ -21,15 +21,7 @@ class ArticleForm < ApplicationForm
   end
 
   def submit!
-    @article.assign_attributes(
-      title:,
-      sub_title:,
-      summary:,
-      published_at:,
-      feature_image:,
-      tags:,
-    )
-    @article.content = parsed_content if parsed_content
+    @article.assign_attributes(assignable_attributes)
     @article.save!
   end
 
@@ -38,6 +30,18 @@ class ArticleForm < ApplicationForm
   end
 
   private
+
+  def assignable_attributes
+    {
+      title:,
+      sub_title:,
+      feature_image:,
+      summary:,
+      content: parsed_content,
+      published_at:,
+      tags:
+    }.compact
+  end
 
   def published_at
     if published == "1"
