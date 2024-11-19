@@ -25,7 +25,7 @@ class ArticleForm < ApplicationForm
       title:,
       sub_title:,
       summary:,
-      published:,
+      published_at:,
       feature_image:,
       tags:,
     )
@@ -38,6 +38,12 @@ class ArticleForm < ApplicationForm
   end
 
   private
+
+  def published_at
+    if published == "1"
+      article.published_at || Time.current
+    end
+  end
 
   def find_or_initialize_article
     if id.present?

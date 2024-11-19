@@ -2,15 +2,20 @@ require "test_helper"
 
 class ArticleFormTest < ActiveSupport::TestCase
   test "creates a new article" do
-    assert_changes -> { Article.count } do
-      form = ArticleForm.new(
-        title: "New Article",
-        sub_title: "Sub Title",
-        summary: "a" * 250,
-        content: "This is some content",
-        published: "1",
-      )
-      assert form.save!
+    freeze_time do
+      assert_changes -> { Article.count } do
+        form = ArticleForm.new(
+          title: "New Article",
+          sub_title: "Sub Title",
+          summary: "a" * 250,
+          content: "This is some content",
+          published: "1",
+        )
+        assert form.save!
+      end
+
+      article = Article.last
+      assert_equal article.published_at, Time.current
     end
   end
 
@@ -29,14 +34,17 @@ class ArticleFormTest < ActiveSupport::TestCase
       content: new_content,
     )
 
-    assert form.save!
+    freeze_time do
+      assert form.save!
 
-    article.reload
+      article.reload
 
-    assert_equal article.title, new_title
-    assert_equal article.sub_title, new_sub_title
-    assert_equal article.summary, new_summary
-    assert_includes article.content.to_s, new_content
+      assert_equal article.title, new_title
+      assert_equal article.sub_title, new_sub_title
+      assert_equal article.summary, new_summary
+      assert_not_equal article.published_at, Time.current
+      assert_includes article.content.to_s, new_content
+    end
   end
 
   test "creates tags if they dont exist" do
