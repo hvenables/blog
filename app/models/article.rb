@@ -25,14 +25,6 @@ class Article < ApplicationRecord
   end
   alias_method :published?, :published
 
-  def published=(value)
-    if value == "1"
-      self.published_at = Time.current
-    else
-      self.published_at = nil
-    end
-  end
-
   def tag_names
     tags.map(&:name)
   end

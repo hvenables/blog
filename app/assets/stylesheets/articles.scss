@@ -59,17 +59,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .publish-date {
-    display: inline-block;
-    flex-grow: 1;
-    margin-top: 8px;
-  }
+  min-height: 50px;
+  margin: 10px 0;
 
   .tags {
-    margin-top: 5px;
-    margin-bottom: 20px;
     display: inline-block;
+    min-height: 22px;
 
     .tag {
       background-color: $text-gray;
@@ -93,6 +88,19 @@
     img {
       width: 100%;
       object-fit: cover; /* Ensures the image covers the parent, even if it crops */
+    }
+
+    .dates {
+      margin: 0;
+      flex-grow: 1;
+
+      h5 {
+        margin: 5px 0 0 0;
+      }
+
+      .edited {
+        color: #838990;
+      }
     }
   }
 }
