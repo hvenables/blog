@@ -8,6 +8,6 @@
 
 <% if @pagy.next.present? %>
   <div id="next_link" class="more-articles">
-      <%= button_to "More Articles", pagy_url_for(@pagy, @pagy.next), class: "btn" %>
+    <%= link_to "More Articles", pagy_url_for(@pagy, @pagy.next), class: "btn", data: { turbo_stream: true } %>
   </div>
 <% end %>

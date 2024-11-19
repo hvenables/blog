@@ -4,6 +4,6 @@
 
 <%= turbo_stream.update "next_link" do %>
   <% if @pagy.next.present? %>
-    <%= button_to "More Articles", pagy_url_for(@pagy, @pagy.next), class: "btn" %>
+    <%= link_to "More Articles", pagy_url_for(@pagy, @pagy.next), class: "btn", data: { turbo_stream: true } %>
   <% end %>
 <% end %>
