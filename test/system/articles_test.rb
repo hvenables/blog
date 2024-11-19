@@ -39,7 +39,7 @@ class ArticlesTest < ApplicationSystemTestCase
     click_on "Published Article"
     assert_selector "h1", text: "Published Article"
     assert_selector "h3", text: "This is a subtitle of the main one"
-    assert_selector "h5", text: articles(:published).published_at.to_formatted_s(:long)
+    assert_selector "h5", text: "Published: #{articles(:published).published_at.to_date.to_formatted_s(:long)}"
     assert_selector "span.tag", text: "Ruby"
   end
 
