@@ -28,8 +28,7 @@
       </div>
     </div>
 
-
-    <%= image_tag(@article.feature_image) if @article.feature_image.attached? %>
+    <%= image_tag(@article.feature_image, class: "featured-image") if @article.feature_image.attached? %>
 
     <%= @article.content %>
 
