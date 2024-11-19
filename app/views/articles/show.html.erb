@@ -12,14 +12,14 @@
     <% end %>
 
     <div class="metadata">
-      <% if @article.published? %>
-        <div class="dates">
+      <div class="dates">
+        <% if @article.published? %>
           <h5>Published: <%= @article.published_at.to_date.to_formatted_s(:long) %></h5>
           <% if @article.published_at.to_date < @article.updated_at.to_date %>
             <h5 class="edited">Edited: <%= @article.updated_at.to_date.to_formatted_s(:long) %></h5>
           <% end %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
 
       <div class="tags">
         <% @article.tags.each do |tag| %>
