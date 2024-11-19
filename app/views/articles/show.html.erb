@@ -7,11 +7,18 @@
 <div class="article-container">
   <div class="article-content">
     <h1><%= @article.title %></h1>
-    <h3><%= @article.sub_title %></h3>
+    <% if @article.sub_title %>
+      <h3 class="sub_title"><%= @article.sub_title %></h3>
+    <% end %>
 
     <div class="metadata">
       <% if @article.published? %>
-        <h5 class="publish-date"><%= @article.published_at.to_formatted_s(:long) %></h5>
+        <div class="dates">
+          <h5>Published: <%= @article.published_at.to_date.to_formatted_s(:long) %></h5>
+          <% if @article.published_at.to_date < @article.updated_at.to_date %>
+            <h5 class="edited">Edited: <%= @article.updated_at.to_date.to_formatted_s(:long) %></h5>
+          <% end %>
+        </div>
       <% end %>
 
       <div class="tags">
