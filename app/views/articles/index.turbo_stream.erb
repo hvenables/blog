@@ -1,0 +1,9 @@
+<%= turbo_stream.append "articles" do %>
+  <%= render partial: "article", collection: @articles %>
+<% end %>
+
+<%= turbo_stream.update "next_link" do %>
+  <% if @pagy.next.present? %>
+    <%= button_to "More Articles", pagy_url_for(@pagy, @pagy.next), class: "btn" %>
+  <% end %>
+<% end %>

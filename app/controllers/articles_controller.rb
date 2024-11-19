@@ -10,7 +10,12 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.includes(:likes).published.order(published_at: :desc).first(10)
+    @pagy, @articles = pagy_countless(Article.includes(:likes).published.order(published_at: :desc))
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def feed
