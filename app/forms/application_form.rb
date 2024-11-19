@@ -14,13 +14,16 @@ class ApplicationForm
       set_callback(:commit, :after, ...)
     end
 
-    def form_attribute(name)
+    def form_attribute(name, cast_type = nil, **options)
+      attr_name = "form_#{name}"
+      attribute attr_name, cast_type, **options
+
       define_method("#{name}=") do |value|
-        instance_variable_set("@#{name}", value)
+        public_send("#{attr_name}=", value)
       end
 
       define_method(name) do
-        instance_variable_get("@#{name}") || record.send(name)
+        public_send(attr_name) || record.public_send(name)
       end
     end
   end
