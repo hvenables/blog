@@ -12,4 +12,4 @@ pin "@stimulus-components/character-counter", to: "@stimulus-components--charact
 pin "modules/code_blocks", to: "modules/code_blocks.js"
 pin "modules/trix_inline_blocks", to: "modules/trix_inline_blocks.js"
 pin "choices", to: "choices.js"
-pin "modules/init_choices", to: "modules/init_choices"
+pin "modules/init_choices", to: "modules/init_choices.js"
