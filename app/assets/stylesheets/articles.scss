@@ -1,5 +1,45 @@
 @use "variables.scss" as *;
 
+.article-card {
+  @include box;
+
+  color: $text-gray;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .title:hover {
+    text-decoration: underline;
+    text-decoration-color: $text-blue;
+    text-decoration-thickness: 2px;
+  }
+
+  .link {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 700;
+  }
+
+  .heading {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .sub-title {
+    color: #838990;
+  }
+
+  .summary {
+    display: block;
+    flex-grow: 1;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .articles-container {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -15,46 +55,38 @@
   }
 }
 
-.article {
-  @include box;
-
-  color: $text-gray;
-  overflow-x: hidden;
+.metadata {
   display: flex;
-  flex-direction: column;
-}
+  justify-content: space-between;
+  align-items: center;
 
-.article-title:hover {
-  text-decoration: underline;
-  text-decoration-color: $text-blue;
-  text-decoration-thickness: 2px;
-}
+  .publish-date {
+    display: inline-block;
+    flex-grow: 1;
+    margin-top: 8px;
+  }
 
-.article-heading {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
+  .tags {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    display: inline-block;
 
-.article-summary {
-  display: block;
-  flex-grow: 1;
-}
-
-.article-link {
-  text-decoration: none;
-  color: inherit;
-  font-weight: 700;
-}
-
-.sub-title {
-  color: #838990;
+    .tag {
+      background-color: $text-gray;
+      border-radius: 5px;
+      color: $background-gray;
+      padding: 3px;
+      font-weight: 700;
+      font-size: small;
+    }
+  }
 }
 
 .article-container {
   display: flex;
   justify-content: center;
 
-  div {
+  .article-content {
     width: 100%;
     max-width: 680px;
 
@@ -64,12 +96,6 @@
     }
   }
 }
-
-.article-footer {
-  display: flex;
-  justify-content: space-between;
-}
-
 
 /* Article Form */
 #article-form > .field > textarea {

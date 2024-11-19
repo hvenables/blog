@@ -7,6 +7,7 @@ import "@rails/actiontext"
 import { highlightPreCodeBlocks } from 'modules/code_blocks';
 import { addTrixInlineStyle } from 'modules/trix_inline_blocks';
 
-
 document.addEventListener('turbo:load', highlightPreCodeBlocks);
 document.addEventListener("trix-before-initialize", addTrixInlineStyle);
+
+import './modules/init_choices'

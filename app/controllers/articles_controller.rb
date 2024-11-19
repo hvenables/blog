@@ -10,11 +10,11 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.published.order(published_at: :desc).first(10)
+    @articles = Article.includes(:likes).published.order(published_at: :desc).first(10)
   end
 
   def feed
-    @articles = Article.published.order(published_at: :desc).last(10)
+    @articles = Article.includes(:tags).published.order(published_at: :desc).last(10)
 
     if stale?(last_modified: @articles.maximum(:updated_at), etag: @articles, public: true)
       respond_to do |format|
@@ -24,37 +24,29 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    @article_form = ArticleForm.new
   end
 
   def create
-    @article = Article.new(
-      content: TrixPreProcessor.new(article_params[:content]).process,
-      **article_params.except(:content)
-    )
+    @article_form = ArticleForm.new(article_params)
 
-    if @article.save
-      redirect_to article_path(@article), notice: "Article has been created"
+    if @article_form.save
+      redirect_to article_path(@article_form.article), notice: "Article has been created"
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @article = Article.friendly.find(params[:id])
+    @article_form = ArticleForm.new(id: params[:id])
   end
 
   def update
-    @article = Article.friendly.find(params[:id])
-    @article.assign_attributes(
-      content: TrixPreProcessor.new(article_params[:content]).process,
-      **article_params.except(:content)
-    )
-
-    if @article.save
-      redirect_to article_path(@article), notice: "Article has been updated"
+    @article_form = ArticleForm.new(id: params[:id], **article_params)
+    if @article_form.save
+      redirect_to article_path(@article_form.article), notice: "Article has been updated"
     else
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -71,6 +63,6 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :sub_title, :summary, :content, :published, :feature_image)
+    params.require(:article).permit(:title, :sub_title, :summary, :content, :published, :feature_image, tag_names: [])
   end
 end

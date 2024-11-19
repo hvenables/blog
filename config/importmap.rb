@@ -11,3 +11,4 @@ pin "highlight.js", to: "https://ga.jspm.io/npm:highlight.js@11.4.0/es/index.js"
 pin "@stimulus-components/character-counter", to: "@stimulus-components--character-counter.js" # @5.0.0
 pin "modules/code_blocks", to: "modules/code_blocks.js"
 pin "modules/trix_inline_blocks", to: "modules/trix_inline_blocks.js"
+pin "choices", to: "choices.js"

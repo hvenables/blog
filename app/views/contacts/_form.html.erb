@@ -3,22 +3,12 @@
     <div class="field">
       <%= f.label :name, "Your name" %>
       <%= f.text_field :name %>
-      <% if f.object.errors[:name].present? %>
-        <div class="error-message" data-controller="error" data-error-target="message">
-          <%= "Your name #{f.object.errors[:name].to_sentence}." %>
-          <span class="error-close" data-action="click->error#close">&times;</span>
-        </div>
-      <% end %>
+      <%= render "form_error", form: f, attribute: :name %>
     </div>
     <div class="field">
       <%= f.label :email, "Your email" %>
       <%= f.email_field :email %>
-      <% if f.object.errors[:email].present? %>
-        <div class="error-message" data-controller="error" data-error-target="message">
-          <%= "Your email #{f.object.errors[:email].to_sentence}." %>
-          <span class="error-close" data-action="click->error#close">&times;</span>
-        </div>
-      <% end %>
+      <%= render "form_error", form: f, attribute: :email %>
     </div>
     <div class="field" data-controller="character-counter">
       <%= f.label :message do %>
@@ -30,12 +20,7 @@
         </div>
       <% end %>
       <%= f.text_area :message, rows: 13, maxlength: 1000, data: { "character-counter-target": "input" } %>
-      <% if f.object.errors[:message].present? %>
-        <div class="error-message" data-controller="error" data-error-target="message">
-          <%= "Your message #{f.object.errors[:message].to_sentence}." %>
-          <span class="error-close" data-action="click->error#close">&times;</span>
-        </div>
-      <% end %>
+      <%= render "form_error", form: f, attribute: :message %>
     </div>
     <div class="submit">
       <%= f.submit "Send message", class: "btn" %>

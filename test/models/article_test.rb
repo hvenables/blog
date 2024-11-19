@@ -12,7 +12,10 @@ class ArticleTest < ActiveSupport::TestCase
     article = Article.new(title: "Test", content: "test", published_at: Time.current)
 
     assert_not article.valid?
-    assert_equal article.errors.full_messages.sole, "Summary can't be blank"
+    assert_equal(
+      article.errors.full_messages.to_sentence,
+      "Summary can't be blank and Summary is too short (minimum is 150 characters)"
+    )
   end
 
   test "article requires content if published" do
