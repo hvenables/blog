@@ -199,6 +199,7 @@ GEM
     nio4r (2.7.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
+    pagy (9.3.1)
     parallel (1.26.3)
     parser (3.3.6.0)
       ast (~> 2.4.1)
@@ -352,6 +353,7 @@ DEPENDENCIES
   letter_opener_web
   minitest
   minitest-reporters
+  pagy
   pg (~> 1.1)
   pry-rails
   puma (>= 5.0)

@@ -85,9 +85,10 @@
     width: 100%;
     max-width: 680px;
 
-    img {
+    .featured-image {
       width: 100%;
       object-fit: cover; /* Ensures the image covers the parent, even if it crops */
+      margin-bottom: 20px;
     }
 
     .dates {

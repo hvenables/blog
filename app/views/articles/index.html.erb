@@ -1,9 +1,13 @@
-<div class="articles-container">
+<div id="articles" class="articles-container">
   <% if @articles.any? %>
-    <% @articles.each do |article| %>
-      <%= render 'article', article: article %>
-    <% end %>
+    <%= render partial: 'article', collection: @articles %>
   <% else %>
     <h2>No Articles</h2>
   <% end %>
 </div>
+
+<% if @pagy.next.present? %>
+  <div id="next_link" class="more-articles">
+    <%= link_to "More Articles", pagy_url_for(@pagy, @pagy.next), class: "btn", data: { turbo_stream: true } %>
+  </div>
+<% end %>
