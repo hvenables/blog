@@ -56,7 +56,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.friendly.find(params[:id])
+    @article = Article.unpublished.friendly.find(params[:id])
 
     if @article.destroy
       redirect_to admin_dashboard_path, notice: "Article deleted"

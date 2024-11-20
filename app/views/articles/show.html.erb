@@ -40,7 +40,9 @@
       <br>
       <div class="actions">
         <%= link_to "Edit", edit_article_path(@article), class: "btn" %>
-        <%= button_to "Delete", article_path(@article), method: :delete, class: 'btn btn-danger', form: {data: {turbo_confirm: 'Are you sure you want to delete?'}} %>
+        <% unless @article.published? %>
+          <%= button_to "Delete", article_path(@article), method: :delete, class: 'btn btn-danger', form: {data: {turbo_confirm: 'Are you sure you want to delete?'}} %>
+        <% end %>
       </div>
     <% end %>
   </div>

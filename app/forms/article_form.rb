@@ -58,16 +58,15 @@ class ArticleForm < ApplicationForm
   end
 
   def parsed_content
-    case content
-    when String
-      TrixPreProcessor.new(content).process
-    end
+    return unless form_content
+
+    TrixPreProcessor.new(form_content).process
   end
 
   def tags
-    return [] unless tag_names
+    return [] unless form_tag_names
 
-    tag_names.compact_blank.map do |name|
+    form_tag_names.compact_blank.map do |name|
       Tag.find_or_initialize_by(name: name)
     end
   end
