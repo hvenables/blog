@@ -74,7 +74,7 @@ GEM
       tzinfo (~> 2.0, >= 2.0.5)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
-    after_commit_everywhere (1.4.0)
+    after_commit_everywhere (1.5.0)
       activerecord (>= 4.2)
       activesupport
     ansi (1.5.0)
@@ -166,7 +166,7 @@ GEM
       letter_opener (~> 1.9)
       railties (>= 6.1)
       rexml
-    logger (1.6.1)
+    logger (1.6.2)
     loofah (2.23.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -295,7 +295,7 @@ GEM
     rubyzip (2.3.2)
     sass-embedded (1.80.7-x86_64-linux-gnu)
       google-protobuf (~> 4.28)
-    securerandom (0.3.2)
+    securerandom (0.4.0)
     selenium-webdriver (4.26.0)
       base64 (~> 0.2)
       logger (~> 1.4)
