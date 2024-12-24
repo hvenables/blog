@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby file: ".ruby-version"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.1"
+gem "rails", "~> 8.0"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 # Use postgresql as the database for Active Record
@@ -44,6 +44,8 @@ gem "friendly_id"
 gem "after_commit_everywhere"
 
 gem "pagy"
+
+gem "dalli"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
