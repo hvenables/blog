@@ -71,6 +71,7 @@ end
 group :test do
   gem "minitest"
   gem "minitest-reporters"
+  gem "simplecov", require: false
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"

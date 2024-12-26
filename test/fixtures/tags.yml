@@ -2,3 +2,5 @@
 
 ruby:
   name: ruby
+another:
+  name: another
