@@ -32,4 +32,9 @@ class ArticleTest < ActiveSupport::TestCase
   test "#published is false when published at timestamp" do
     assert_not Article.new(published_at: nil).published
   end
+
+  test "#tag_names returns an array of tag names" do
+    article = articles(:published)
+    assert_equal article.tag_names, ["ruby", "another"]
+  end
 end

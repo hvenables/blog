@@ -28,6 +28,7 @@ jobs:
       PGUSER: postgres
       PGPASSWORD: "password"
       RAILS_ENV: test
+      COVERAGE: true
     steps:
       - checkout
       - ruby/install-deps
@@ -43,10 +44,9 @@ jobs:
       - ruby/rubocop-check
       - run:
           name: Test
-          command: bundle exec rails test
-      - run:
-          name: System Tests
-          command: bundle exec rails test:system
+          command: bundle exec rails test:all
+      - store_artifacts:
+          path: coverage
 
 workflows:
   version: 2

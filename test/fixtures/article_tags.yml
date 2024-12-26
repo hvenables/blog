@@ -1,3 +1,7 @@
-published_article_tags:
+published_article_ruby_tag:
   article: published
   tag: ruby
+
+published_article_another_tag:
+  article: published
+  tag: another
