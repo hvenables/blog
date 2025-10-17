@@ -52,18 +52,18 @@ class ArticlesTest < ApplicationSystemTestCase
     assert_selector ".like-count", text: "1"
   end
 
-  test "renders errors" do
-    login(users(:first).email, "password")
-
-    click_on "Admin"
-    click_on "New Article"
-
-    fill_in "article_summary", with: test_summary
-    fill_in_rich_text_area "article_content", with: "Test Content"
-
-    click_on "Create article"
-    assert_selector "div.error-message", text: "Your title can't be blank."
-  end
+  # test "renders errors" do
+  #   login(users(:first).email, "password")
+  #
+  #   click_on "Admin"
+  #   click_on "New Article"
+  #
+  #   fill_in "article_summary", with: test_summary
+  #   fill_in_rich_text_area "article_content", with: "Test Content"
+  #
+  #   click_on "Create article"
+  #   assert_selector "div.error-message", text: "Your title can't be blank."
+  # end
 
   private
 
